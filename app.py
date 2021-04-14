@@ -12,7 +12,7 @@ def hello_world():
 
 @app.route('/user/<userID>')
 def user(userID):
-    user = User_Old()
+    user = User_Old(userID)
     return jsonify(user.__dict__)
 
 if __name__ == '__main__':

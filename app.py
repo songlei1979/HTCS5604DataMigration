@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+from Class.User_Old import User_Old
+
 app = Flask(__name__)
 CORS(app)
 
@@ -10,7 +12,8 @@ def hello_world():
 
 @app.route('/user/<userID>')
 def user(userID):
-    return userID
+    user = User_Old()
+    return jsonify(user.__dict__)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

@@ -9,10 +9,8 @@ def hello_world():
     return 'Hello World!'
 
 @app.route('/user/<userID>')
-def user():
-    def user(userID):
-        userID = userID
-        return userID
+def user(userID):
+    return userID
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

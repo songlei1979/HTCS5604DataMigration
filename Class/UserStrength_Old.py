@@ -5,6 +5,6 @@ class UserStrength_Old:
         self.userID = userID
         db = DB()
         cursor = db.createCursor()
-        cursor.execute("select name from old where userID = "+userID+"")
+        cursor.execute("select name from userStrength_old where userID = "+userID+"")
         self.StrengthIDs = cursor.fetchall()
         db.close()

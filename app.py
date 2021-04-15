@@ -16,9 +16,8 @@ def hello_world():
 @app.route('/user/<userID>', methods = ['POST', 'GET'])
 def user(userID):
     if request.method == 'POST':
-        # user = request.form['nm']
-        # return redirect(url_for('success', name=user))
-        return ""
+        userInfo = request.get_json()
+        return userInfo["strengths"]
     else:
         user = User_Old(userID)
         return jsonify(user.__dict__)

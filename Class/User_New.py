@@ -15,15 +15,18 @@ class User_New:
     def save(self):
         db = DB()
         cursor = db.createCursor()
-        cursor.execute(
-            "INSERT INTO userDM_new(userID, firstName, lastName, address, username, password, cityID) "
-            "VALUES ("+str(self.userID)+",'"+self.firstName+"','"+self.lastName+"','"+self.address+"','"+self.username+"','"+self.password+"',"+str(self.cityID)+")")
+        sql = "INSERT INTO userDM_new (userID, firstName, lastName, address, username, password, cityID) VALUES (%d, %s, %s, %s, %s, %s, %d)"
+        val = (int(self.userID), self.firstName, self.lastName, self.address,self.username, self.password, int(self.cityID))
+        cursor.execute(sql, val)
+
+
+
         i = 0
         while i < len(self.strengthIDs):
             s_id = self.strengthIDs[i]
-            cursor.execute(
-                "INSERT INTO userStrength_new(userID, strengthID) "
-                "VALUES (" + str(self.userID) + ","+str(s_id)+")")
+            sql = "INSERT INTO userStrength_new (userID, strengthID) VALUES (%d, %d)"
+            val = (int(self.userID), int(s_id))
+            cursor.execute(sql, val)
             i = i + 1
         db.close()
 

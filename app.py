@@ -4,6 +4,7 @@ from flask_cors import CORS
 from Class.City import City
 from Class.DB import DB
 from Class.Strength import Strength
+from Class.User_New import User_New
 from Class.User_Old import User_Old
 
 app = Flask(__name__)
@@ -17,7 +18,23 @@ def hello_world():
 def user(userID):
     if request.method == 'POST':
         userInfo = request.get_json()
-        return jsonify(userInfo["strengths"])
+        userID = userInfo["userID"]
+        firstname = userInfo["firstname"]
+        lastname = userInfo["lastname"]
+        address = userInfo["address"]
+        cityID = userInfo["cityID"]
+        username = userInfo["username"]
+        password = userInfo["password"]
+        strengths = userInfo["strengths"]
+        if username == "" or password == "":
+            return "please check username and password"
+        else:
+            user = User_New(userID, firstname, lastname, address, username, password, cityID, strengths)
+            try:
+                user.save()
+                return "done"
+            except:
+                return "some thing wrong"
     else:
         user = User_Old(userID)
         return jsonify(user.__dict__)

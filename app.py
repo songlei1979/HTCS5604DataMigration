@@ -32,7 +32,7 @@ def user(userID):
             user = User_New(userID, firstname, lastname, address, username, password, cityID, strengths)
             try:
                 user.save()
-                return jsonify(userID)
+                return jsonify(user.__dict__)
             except:
                 return "some thing wrong"
     else:

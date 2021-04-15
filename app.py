@@ -17,7 +17,7 @@ def hello_world():
 def user(userID):
     if request.method == 'POST':
         userInfo = request.get_json()
-        return userInfo["strengths"]
+        return jsonify(userInfo["strengths"])
     else:
         user = User_Old(userID)
         return jsonify(user.__dict__)
